@@ -15,7 +15,8 @@ Book.prototype.showBook = function () {
   }
 }
 Book.prototype.isValid = function () {
-  return (this.title && this.author && this.pageNumber)
+  if (this.title && this.author && this.pageNumber) return true;
+  return false;
 }
 function getBookInfo() {
   const bookTitle = document.querySelector("#Title").value;
@@ -24,12 +25,11 @@ function getBookInfo() {
   const isRead = document.querySelector("#Read").checked;
   let newBook = new Book(bookTitle, authorName, pages, isRead);
   console.log(newBook);
-  console.log(newBook.isValid())
-  if (newBook.isValid()) {
-    console.log("There is something missing");
-  }else{
-    console.log("this is not ampty");
+  if (!newBook.isValid()) {
+    console.log('All field required');
+    return false;
   }
+  console.log('All good');
 }
 
 function addBookToLibrary() {
