@@ -14,18 +14,26 @@ Book.prototype.showBook = function () {
           status: this.status
   }
 }
+Book.prototype.isValid = function () {
+  return (this.title && this.author && this.pageNumber)
+}
 function getBookInfo() {
   const bookTitle = document.querySelector("#Title").value;
   const authorName = document.querySelector("#Author").value;
   const pages = document.querySelector("#numberPage").value;
-  const isRead = document.querySelector("#Read").value;
-  console.log(bookTitle, authorName, pages, isRead);
+  const isRead = document.querySelector("#Read").checked;
+  let newBook = new Book(bookTitle, authorName, pages, isRead);
+  console.log(newBook);
+  console.log(newBook.isValid())
+  if (newBook.isValid()) {
+    console.log("There is something missing");
+  }else{
+    console.log("this is not ampty");
+  }
 }
 
 function addBookToLibrary() {
-  
+
 }
 const addBtn = document.querySelector("#Add");
 addBtn.addEventListener("click", getBookInfo);
-
-
