@@ -7,7 +7,7 @@ function Book(title, author, pageNumber, status) {
   this.status = status;
 }
 
-Book.prototype.showBook = function () {
+Book.prototype.showBook = function showBook() {
   return {
     title: this.title,
     author: this.author,
@@ -15,7 +15,7 @@ Book.prototype.showBook = function () {
     status: this.status,
   };
 };
-Book.prototype.isValid = function () {
+Book.prototype.isValid = function isValid() {
   if (this.title && this.author && this.pageNumber) return true;
   return false;
 };
@@ -31,10 +31,12 @@ function getBookInfo() {
     return false;
   }
   console.log('All good');
+  return true;
 }
 
 function addBookToLibrary() {
-
+  return true;
 }
 const addBtn = document.querySelector('#Add');
 addBtn.addEventListener('click', getBookInfo);
+addBookToLibrary();
