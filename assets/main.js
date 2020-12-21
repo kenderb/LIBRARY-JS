@@ -14,10 +14,18 @@ Book.prototype.showBook = function () {
           status: this.status
   }
 }
+function getBookInfo() {
+  const bookTitle = document.querySelector("#Title").value;
+  const authorName = document.querySelector("#Author").value;
+  const pages = document.querySelector("#numberPage").value;
+  const isRead = document.querySelector("#Read").value;
+  console.log(bookTitle, authorName, pages, isRead);
+}
 
 function addBookToLibrary() {
   
 }
+const addBtn = document.querySelector("#Add");
+addBtn.addEventListener("click", getBookInfo);
 
-var newBook = new Book("Ender's game", "C", 123, true );
-console.log(newBook.showBook());
+
