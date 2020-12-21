@@ -16,8 +16,7 @@ Book.prototype.showBook = function showBook() {
   };
 };
 Book.prototype.isValid = function isValid() {
-  if (this.title && this.author && this.pageNumber) return true;
-  return false;
+  return (this.title && this.author && this.pageNumber);
 };
 function getBookInfo() {
   const bookTitle = document.querySelector('#Title').value;
@@ -25,12 +24,10 @@ function getBookInfo() {
   const pages = document.querySelector('#numberPage').value;
   const isRead = document.querySelector('#Read').checked;
   const newBook = new Book(bookTitle, authorName, pages, isRead);
-  console.log(newBook);
   if (!newBook.isValid()) {
-    console.log('All field required');
     return false;
   }
-  console.log('All good');
+  myLibrary.push(newBook);
   return true;
 }
 
@@ -40,3 +37,4 @@ function addBookToLibrary() {
 const addBtn = document.querySelector('#Add');
 addBtn.addEventListener('click', getBookInfo);
 addBookToLibrary();
+console.log(myLibrary);
