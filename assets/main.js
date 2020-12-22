@@ -80,9 +80,19 @@ function getBookInfo() {
     return false;
   }
   addBookToLibrary(newBook);
+  document.querySelector('#book-form').reset();
+  addBook.className = 'd-block';
+  formContainer.className = 'd-none';
   return true;
 }
 
+function displayForm() {
+  formContainer.className = 'd-block';
+  addBook.className = 'd-none';
+}
+const formContainer = document.querySelector('.form-container');
 const addBtn = document.querySelector('#Add');
+const addBook = document.querySelector('#new-book');
 addBtn.addEventListener('click', getBookInfo);
+addBook.addEventListener('click', displayForm);
 displayBooks();
