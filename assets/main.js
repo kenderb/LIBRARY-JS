@@ -27,10 +27,13 @@ function getBookInfo() {
   const isRead = document.querySelector('#Read').checked;
   const newBook = new Book(bookTitle, authorName, pages, isRead);
   if (!newBook.isValid()) {
+    console.log('no valid');
     return false;
   }
   myLibrary.push(newBook);
-  return true;
+  console.log('you pass');
+  console.log(myLibrary);
+  return myLibrary;
 }
 
 function addBookToLibrary() {
@@ -40,4 +43,4 @@ function addBookToLibrary() {
 const addBtn = document.querySelector('#Add');
 addBtn.addEventListener('click', getBookInfo);
 addBookToLibrary();
-console.log(myLibrary);
+
