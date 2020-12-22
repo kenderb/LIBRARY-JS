@@ -45,14 +45,15 @@ Book.prototype.isValid = function isValid() {
 function displayBooks() {
   const booksContainer = document.querySelector('.books-container');
   booksContainer.innerHTML = '';
-  myLibrary.forEach(element => {
+  myLibrary.forEach((element, index) => {
     const cardContainer = document.createElement('div');
     cardContainer.className = 'card col-4 p-2';
+    cardContainer.setAttribute('data-typeId', `${index}`)
     cardContainer.innerHTML = `<div class="card-body">
                               <h5 class="card-title">${element.title}</h5>
                               <p class="card-text">${element.author}</p>
                               <p class="card-text">${element.pageNumber}</p>
-                              <a href="#" class="btn btn-danger">delete</a>
+                              <input type="button"  value = "delete" onclick="deleteBook(${index})" class="btn btn-danger">
                               </div>`;
     booksContainer.appendChild(cardContainer);
   });
@@ -90,6 +91,12 @@ function displayForm() {
   formContainer.className = 'd-block';
   addBook.className = 'd-none';
 }
+
+function deleteBook(index){
+    myLibrary.splice(index,1);
+    document.querySelector(`[data-typeId= '${index}']`).remove();
+}
+
 const formContainer = document.querySelector('.form-container');
 const addBtn = document.querySelector('#Add');
 const addBook = document.querySelector('#new-book');
