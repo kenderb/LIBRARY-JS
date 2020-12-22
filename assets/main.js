@@ -15,9 +15,11 @@ Book.prototype.showBook = function showBook() {
     status: this.status,
   };
 };
+
 Book.prototype.isValid = function isValid() {
   return (this.title && this.author && this.pageNumber);
 };
+
 function getBookInfo() {
   const bookTitle = document.querySelector('#Title').value;
   const authorName = document.querySelector('#Author').value;
@@ -34,6 +36,7 @@ function getBookInfo() {
 function addBookToLibrary() {
   return true;
 }
+
 const addBtn = document.querySelector('#Add');
 addBtn.addEventListener('click', getBookInfo);
 addBookToLibrary();
