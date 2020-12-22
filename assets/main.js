@@ -5,11 +5,6 @@ const myLibrary = [{
   status: false,
 }];
 
-const formContainer = document.querySelector('.form-container');
-const addBtn = document.querySelector('#Add');
-const addBook = document.querySelector('#new-book');
-
-
 function Book(title, author, pageNumber, status) {
   this.title = title;
   this.author = author;
@@ -47,38 +42,20 @@ Book.prototype.isValid = function isValid() {
   return messages;
 };
 
-function deleteBook(indexNum) {
-  myLibrary.splice(indexNum, 1);
-  document.querySelector(`[data-typeId= '${indexNum}']`).remove();
-}
-function displaystatus(status, index) {
-  if (status) {
-    return `<input type="button" value = "read" class="btn btn-success" data-readId=${index} id="read-book">`;
-  }
-  return `<input type="button" value = "no read" class="btn btn-warning" data-readId=${index} id="read-book">`;
-}
-function toggleRead(status) {
-}
-
 function displayBooks() {
   const booksContainer = document.querySelector('.books-container');
   booksContainer.innerHTML = '';
   myLibrary.forEach((element, index) => {
     const cardContainer = document.createElement('div');
     cardContainer.className = 'card col-4 p-2';
-    cardContainer.setAttribute('data-typeId', `${index}`);
+    cardContainer.setAttribute('data-typeId', `${index}`)
     cardContainer.innerHTML = `<div class="card-body">
                               <h5 class="card-title">${element.title}</h5>
                               <p class="card-text">${element.author}</p>
                               <p class="card-text">${element.pageNumber}</p>
-                              ${displaystatus(element.status, index)} <br>
-                              <input type="button"  value = "delete"  class="btn btn-danger" id="delete-book">
+                              <input type="button"  value = "delete" onclick="deleteBook(${index})" class="btn btn-danger">
                               </div>`;
     booksContainer.appendChild(cardContainer);
-    const deleteBookBtn = document.querySelector('#delete-book');
-    deleteBookBtn.onclick = () => {
-      deleteBook(index);
-    };
   });
   return true;
 }
@@ -115,7 +92,14 @@ function displayForm() {
   addBook.className = 'd-none';
 }
 
+function deleteBook(index){
+    myLibrary.splice(index,1);
+    document.querySelector(`[data-typeId= '${index}']`).remove();
+}
 
+const formContainer = document.querySelector('.form-container');
+const addBtn = document.querySelector('#Add');
+const addBook = document.querySelector('#new-book');
 addBtn.addEventListener('click', getBookInfo);
 addBook.addEventListener('click', displayForm);
 displayBooks();
