@@ -50,6 +50,15 @@ function deleteBook(index) {
   document.querySelector(`[data-typeId= '${index}']`).remove();
 }
 
+function createDeleteBtn(index) {
+  if (index == null) return false;
+  const deleteBtn = document.createElement('button');
+  deleteBtn.classList.add('btn', 'btn-danger');
+  deleteBtn.onclick = () => { deleteBook(index); };
+  deleteBtn.innerHTML = 'Delte';
+  return deleteBtn;
+}
+
 function displayBooks() {
   const booksContainer = document.querySelector('.books-container');
   booksContainer.innerHTML = '';
@@ -58,11 +67,11 @@ function displayBooks() {
     cardContainer.className = 'card col-4 p-2';
     cardContainer.setAttribute('data-typeId', `${index}`);
     cardContainer.innerHTML = `<div class="card-body">
-                              <h5 class="card-title">${element.title}</h5>
-                              <p class="card-text">${element.author}</p>
-                              <p class="card-text">${element.pageNumber}</p>
-                              <input type="button"  value = "delete" onclick="deleteBook(${index})" class="btn btn-danger">
+                                <h5 class="card-title">${element.title}</h5>
+                                <p class="card-text">${element.author}</p>
+                                <p class="card-text">${element.pageNumber}</p>
                               </div>`;
+    cardContainer.appendChild(createDeleteBtn(index));
     booksContainer.appendChild(cardContainer);
   });
   return true;
@@ -99,10 +108,6 @@ function displayForm() {
   formContainer.className = 'd-block';
   addBook.className = 'd-none';
 }
-
-
-
-
 addBtn.addEventListener('click', getBookInfo);
 addBook.addEventListener('click', displayForm);
 displayBooks();
