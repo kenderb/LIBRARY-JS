@@ -45,25 +45,12 @@ Book.prototype.isValid = function isValid() {
   return messages;
 };
 
-function deleteBook(index) {
-  myLibrary.splice(index, 1);
-  document.querySelector(`[data-typeId= '${index}']`).remove();
-}
-
-function createDeleteBtn(index) {
-  if (index == null) return false;
-  const deleteBtn = document.createElement('button');
-  deleteBtn.classList.add('btn', 'btn-danger');
-  deleteBtn.onclick = () => { deleteBook(index); };
-  deleteBtn.innerHTML = 'Delte';
-  return deleteBtn;
-}
-
 function displayBooks() {
   const booksContainer = document.querySelector('.books-container');
   booksContainer.innerHTML = '';
   myLibrary.forEach((element, index) => {
     const cardContainer = document.createElement('div');
+    const deleteBtn = document.createElement('button');
     cardContainer.className = 'card col-4 p-2';
     cardContainer.setAttribute('data-typeId', `${index}`);
     cardContainer.innerHTML = `<div class="card-body">
@@ -71,11 +58,19 @@ function displayBooks() {
                                 <p class="card-text">${element.author}</p>
                                 <p class="card-text">${element.pageNumber}</p>
                               </div>`;
-    cardContainer.appendChild(createDeleteBtn(index));
+    deleteBtn.classList.add('btn', 'btn-danger');
+    deleteBtn.innerHTML = 'Delete';
+    deleteBtn.addEventListener('click', () => {
+      myLibrary.splice(index, 1);
+      document.querySelector(`[data-typeId= '${index}']`).remove();
+      displayBooks();
+    });
+    cardContainer.appendChild(deleteBtn);
     booksContainer.appendChild(cardContainer);
   });
   return true;
 }
+
 
 function addBookToLibrary(newBook) {
   myLibrary.push(newBook);
