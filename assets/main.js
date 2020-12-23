@@ -15,15 +15,6 @@ function Book(title, author, pageNumber, status) {
   this.status = status;
 }
 
-Book.prototype.showBook = function showBook() {
-  return {
-    title: this.title,
-    author: this.title,
-    pageNumber: this.pageNumber,
-    status: this.status,
-  };
-};
-
 Book.prototype.isValid = function isValid() {
   const messages = [];
   if (this.title === '' || this.title == null) {
@@ -57,42 +48,54 @@ function createDeleteBtn(index, reset) {
   return deleteBtn;
 }
 
-function createReadBtn(index,reset) {
-  console.log(myLibrary[index]);
+function createReadBtn(index, reset) {
   const readBtn = document.createElement('button');
   if (myLibrary[index].status) {
     readBtn.classList.add('btn', 'btn-success');
     readBtn.innerHTML = 'read';
-  }else {
+  } else {
     readBtn.classList.add('btn', 'btn-warning');
     readBtn.innerHTML = 'Not read';
   }
-  readBtn.addEventListener('click', () =>{
+  readBtn.addEventListener('click', () => {
     myLibrary[index].status = !myLibrary[index].status;
     reset();
-    console.log(myLibrary[index]);
-  })
-  console.log(myLibrary[index]);
+  });
+
   return readBtn;
+}
+function createCard(element, index, reset) {
+  const cardContainer = document.createElement('div');
+  const newDelteBtn = createDeleteBtn(index, reset);
+  const newReadOrNotBtn = createReadBtn(index, reset);
+  const cardBody = document.createElement('div');
+  const h5Tag = document.createElement('h5');
+  const p1 = document.createElement('p');
+  p1.className = 'card-title';
+  p1.innerHTML = element.author;
+  const p2 = document.createElement('p');
+  p2.className = 'card-title';
+  p2.innerHTML = element.pageNumber;
+  h5Tag.className = 'card-title';
+  h5Tag.innerHTML = element.title;
+  cardBody.className = 'card-body';
+  cardContainer.className = 'card col-4 p-2';
+  cardContainer.setAttribute('data-typeId', `${index}`);
+  cardBody.appendChild(h5Tag);
+  cardBody.appendChild(p1);
+  cardBody.appendChild(p2);
+  cardContainer.appendChild(cardBody);
+  cardContainer.appendChild(newReadOrNotBtn);
+  cardContainer.appendChild(newDelteBtn);
+  return cardContainer;
 }
 
 function displayBooks() {
   const booksContainer = document.querySelector('.books-container');
   booksContainer.innerHTML = '';
   myLibrary.forEach((element, index) => {
-    const cardContainer = document.createElement('div');
-    cardContainer.className = 'card col-4 p-2';
-    cardContainer.setAttribute('data-typeId', `${index}`);
-    cardContainer.innerHTML = `<div class="card-body">
-                                <h5 class="card-title">${element.title}</h5>
-                                <p class="card-text">${element.author}</p>
-                                <p class="card-text">${element.pageNumber}</p>
-                              </div>`;
-    const newDelteBtn = createDeleteBtn(index, displayBooks);
-    const newReadOrNotBtn = createReadBtn(index, displayBooks);
-    cardContainer.appendChild(newReadOrNotBtn);
-    cardContainer.appendChild(newDelteBtn);
-    booksContainer.appendChild(cardContainer);
+    const card = createCard(element, index, displayBooks);
+    booksContainer.appendChild(card);
   });
   return true;
 }
