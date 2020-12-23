@@ -45,12 +45,23 @@ Book.prototype.isValid = function isValid() {
   return messages;
 };
 
+function createDeleteBtn(index, reset) {
+  const deleteBtn = document.createElement('button');
+  deleteBtn.classList.add('btn', 'btn-danger');
+  deleteBtn.innerHTML = 'Delete';
+  deleteBtn.addEventListener('click', () => {
+    myLibrary.splice(index, 1);
+    document.querySelector(`[data-typeId= '${index}']`).remove();
+    reset();
+  });
+  return deleteBtn;
+}
+
 function displayBooks() {
   const booksContainer = document.querySelector('.books-container');
   booksContainer.innerHTML = '';
   myLibrary.forEach((element, index) => {
     const cardContainer = document.createElement('div');
-    const deleteBtn = document.createElement('button');
     cardContainer.className = 'card col-4 p-2';
     cardContainer.setAttribute('data-typeId', `${index}`);
     cardContainer.innerHTML = `<div class="card-body">
@@ -58,14 +69,8 @@ function displayBooks() {
                                 <p class="card-text">${element.author}</p>
                                 <p class="card-text">${element.pageNumber}</p>
                               </div>`;
-    deleteBtn.classList.add('btn', 'btn-danger');
-    deleteBtn.innerHTML = 'Delete';
-    deleteBtn.addEventListener('click', () => {
-      myLibrary.splice(index, 1);
-      document.querySelector(`[data-typeId= '${index}']`).remove();
-      displayBooks();
-    });
-    cardContainer.appendChild(deleteBtn);
+    const newDelteBtn = createDeleteBtn(index, displayBooks);
+    cardContainer.appendChild(newDelteBtn);
     booksContainer.appendChild(cardContainer);
   });
   return true;
