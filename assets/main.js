@@ -57,6 +57,25 @@ function createDeleteBtn(index, reset) {
   return deleteBtn;
 }
 
+function createReadBtn(index,reset) {
+  console.log(myLibrary[index]);
+  const readBtn = document.createElement('button');
+  if (myLibrary[index].status) {
+    readBtn.classList.add('btn', 'btn-success');
+    readBtn.innerHTML = 'read';
+  }else {
+    readBtn.classList.add('btn', 'btn-warning');
+    readBtn.innerHTML = 'Not read';
+  }
+  readBtn.addEventListener('click', () =>{
+    myLibrary[index].status = !myLibrary[index].status;
+    reset();
+    console.log(myLibrary[index]);
+  })
+  console.log(myLibrary[index]);
+  return readBtn;
+}
+
 function displayBooks() {
   const booksContainer = document.querySelector('.books-container');
   booksContainer.innerHTML = '';
@@ -70,6 +89,8 @@ function displayBooks() {
                                 <p class="card-text">${element.pageNumber}</p>
                               </div>`;
     const newDelteBtn = createDeleteBtn(index, displayBooks);
+    const newReadOrNotBtn = createReadBtn(index, displayBooks);
+    cardContainer.appendChild(newReadOrNotBtn);
     cardContainer.appendChild(newDelteBtn);
     booksContainer.appendChild(cardContainer);
   });
