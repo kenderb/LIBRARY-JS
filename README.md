@@ -1,53 +1,31 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
-
-> One paragraph statement about the project.
-
-![screenshot](./app_screenshot.png)
-
-Additional description about the project and its features.
+# Library on JS
+This is just a simple web app where you can create books or delete them once they already exist, you can also indicate if you have read the book before, at the moment you create it or after creating the book.
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- HTML5
+- bootstrap
+- JavaScript
 
 ## Live Demo
 
-[Live Demo Link](https://livedemo.com)
+[Live Demo Link](https://raw.githack.com/kenderb/LIBRARY-JS/feature/index.html)
 
 
-## Getting Started
-
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-### Setup
-
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
-
-
+## To get a local copy up and running follow these simple example steps.
+- Go to the main page of the repo.
+- Press the "Code" button and get the repo link.
+- Then run `git clone https://github.com/kenderb/LIBRARY-JS.git` in your console to download the project
 
 ## Authors
 
-👤 **Author1**
+👤 **Adan Fernandez Bonilla**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/linkedinhandle)
+- GitHub: [Github: balerum03](https://github.com/balerum03)
+- LinkedIn: [LinkedIn: Adan Fernandez Bonilla](https://www.linkedin.com/in/adan-fernandez-bonilla/)
+- Twitter: [Twitter: balerum03](https://twitter.com/balerum03)
 
 👤 **Kender Bolivar**
 
@@ -67,10 +45,9 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- Odin Project.
+- Stackoverflow.
 
 ## 📝 License
 
-This project is [MIT](lic.url) licensed.
+This project is [MIT](LICENSE) licensed.
